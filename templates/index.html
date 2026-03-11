@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bid XLS Generator</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <div>
+          <p class="kicker">VFX Bid Pipeline</p>
+          <h1>Bid XLS Generator</h1>
+          <p class="lead">
+            Upload an EDL/XML and get a ready-to-fill bid sheet with shot ranges and optional thumbnails.
+          </p>
+        </div>
+        <div class="panel">
+          <form id="bid-form" action="/generate" method="post" enctype="multipart/form-data">
+            <label class="field">
+              <span>EDL or XML file</span>
+              <input type="file" name="edl_file" accept=".edl,.xml" required />
+            </label>
+            <label class="field">
+              <span>Optional video (mp4/mov)</span>
+              <input type="file" name="video_file" accept="video/mp4,video/quicktime" />
+            </label>
+            <label class="field">
+              <span>Frame rate (fps)</span>
+              <input type="number" name="fps" step="0.001" value="24" min="1" required />
+            </label>
+            <button type="submit" class="cta">Generate Excel</button>
+            <p class="hint">If a video is uploaded, thumbnails are embedded in the Excel file.</p>
+          </form>
+        </div>
+      </section>
+      <section class="details">
+        <h2>Output Columns</h2>
+        <div class="grid">
+          <div>Shot</div>
+          <div>Start Frame</div>
+          <div>End Frame</div>
+          <div>Duration</div>
+          <div>Thumbnail</div>
+          <div>Description</div>
+          <div>Bid</div>
+        </div>
+      </section>
+    </main>
+    <script src="/static/app.js"></script>
+  </body>
+</html>

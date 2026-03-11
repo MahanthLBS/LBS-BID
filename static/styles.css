@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap");
+
+:root {
+  --ink: #1c1c1c;
+  --accent: #de5b2d;
+  --paper: #f6f0e6;
+  --panel: #ffffff;
+  --shadow: rgba(28, 28, 28, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: radial-gradient(circle at top left, #f6d9c7, transparent 50%),
+    radial-gradient(circle at bottom right, #f5f0e1, transparent 55%),
+    var(--paper);
+}
+
+.page {
+  min-height: 100vh;
+  padding: 64px 24px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+  align-items: center;
+}
+
+.kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: rgba(28, 28, 28, 0.6);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  margin: 12px 0 16px;
+}
+
+.lead {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 420px;
+}
+
+.panel {
+  background: var(--panel);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 24px 60px var(--shadow);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+  font-weight: 600;
+}
+
+.field input {
+  border-radius: 12px;
+  border: 1px solid rgba(28, 28, 28, 0.2);
+  padding: 10px 12px;
+  font-size: 1rem;
+}
+
+.cta {
+  width: 100%;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 24px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+  background: var(--accent);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(222, 91, 45, 0.35);
+}
+
+.hint {
+  font-size: 0.85rem;
+  color: rgba(28, 28, 28, 0.65);
+  margin-top: 12px;
+}
+
+.details {
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 20px;
+  padding: 28px;
+  backdrop-filter: blur(8px);
+}
+
+.details h2 {
+  margin: 0 0 18px;
+  font-size: 1.5rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 14px;
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 40px 18px 60px;
+  }
+
+  .panel {
+    padding: 22px;
+  }
+}
