@@ -1,8 +1,9 @@
 from __future__ import annotations
 
+import csv
 from pathlib import Path
 from tempfile import TemporaryDirectory
-from typing import List
+from typing import List, Dict, Set
 
 from fastapi import FastAPI, UploadFile, File, Form, Request, HTTPException
 from fastapi.staticfiles import StaticFiles
@@ -21,6 +22,7 @@ TEMPLATES = Jinja2Templates(directory=str(BASE_DIR / "templates"))
 app.mount("/static", StaticFiles(directory=str(BASE_DIR / "static")), name="static")
 
 
+
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request) -> HTMLResponse:
     return TEMPLATES.TemplateResponse("index.html", {"request": request})
@@ -35,6 +37,8 @@ def _parse_shots(file_name: str, content: str, fps: float) -> List[dict]:
     if "<" in content[:1000]:
         return parse_xml(content, fps)
     return parse_edl(content, fps)
+
+
 
 
 @app.post("/generate")
@@ -65,14 +69,14 @@ async def generate(
             except RuntimeError as exc:
                 raise HTTPException(status_code=400, detail=str(exc)) from exc
 
-        output_path = temp_path / "bid.xlsx"
-        build_workbook(shots, output_path)
+        xlsx_path = temp_path / "bid.xlsx"
+        build_workbook(shots, xlsx_path)
     except Exception:
         temp_dir.cleanup()
         raise
 
     return FileResponse(
-        path=str(output_path),
+        path=str(xlsx_path),
         media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         filename="bid.xlsx",
         background=BackgroundTask(temp_dir.cleanup),

@@ -1,6 +1,8 @@
 const form = document.querySelector("#bid-form");
 if (form) {
   form.addEventListener("submit", () => {
-    form.querySelector(".cta").textContent = "Generating...";
+    const button = form.querySelector(".cta");
+    button.textContent = "Generating...";
+    button.disabled = true;
   });
 }
