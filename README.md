@@ -31,3 +31,4 @@ uvicorn app.main:app --reload
 ## Notes
 - EDL parsing supports common CMX3600 event lines with timecodes.
 - XML parsing supports basic Final Cut Pro XML clipitems with start/end frames.
+# LBS-BID
